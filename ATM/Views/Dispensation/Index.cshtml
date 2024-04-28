@@ -1,0 +1,35 @@
+﻿@using Application.Enums
+@model Application.ViewModels.WithdrawalViewModel
+
+@{
+    ViewData["Title"] = "Dispensation Type";
+}
+
+<form asp-controller="Dispensation" asp-action="Index" method="post">
+    <main class="container-fluid mt-4">
+        <div class="row">
+            <div class="col-12 col-sm-6 offset-sm-3 col-md-4 offset-md-4">
+                <div class="card">
+                    <div class="card-header bg-primary text-light">
+                        <h2>Dispensation</h2>
+                    </div>
+                    <div class="card-body">
+                        <div class="mb-3">
+                            <label class="form-label">Choose your preferred cash withdrawal dispensing mode:</label>
+                            <div class="mb-3">
+                                <select class="form-select" asp-for="DispensationType">
+                                    <option value="@(Dispensation.Efficient.ToString())" selected="@(Model.DispensationType == Dispensation.Efficient.ToString())">Efficient</option>
+                                    <option value="@(Dispensation.OneHundred_FiveHundred.ToString())" selected="@(Model.DispensationType == Dispensation.OneHundred_FiveHundred.ToString())">100 and 500</option>
+                                    <option value="@(Dispensation.TwoHundred_OneThousand.ToString())" selected="@(Model.DispensationType == Dispensation.TwoHundred_OneThousand.ToString())">200 and 1000</option>
+                                </select>
+                            </div>
+                            <div>
+                                <button type="submit" class="btn btn-outline-primary float-end">Guardar</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+</form>

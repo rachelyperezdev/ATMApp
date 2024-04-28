@@ -1,0 +1,63 @@
+﻿@using Application.Enums
+@model Application.ViewModels.WithdrawalViewModel;
+
+@{
+    ViewData["Title"] = "Home";
+}
+
+<main class="container-fluid mt-4">
+    <div class="row justify-content-center">
+        <div class="col-12 col-sm-6 col-md-4">
+            <div class="text-center mb-4">
+                <h1 class="display-3">ATM</h1>
+            </div>
+
+            <div class="text-center">
+                @if (Model.DispensationType == Dispensation.Efficient.ToString())
+                {
+                    <h2 class="text-muted">Efficient Withdrawal</h2>
+                }
+                else if (Model.DispensationType == Dispensation.TwoHundred_OneThousand.ToString())
+                {
+                    <h2 class="text-muted">200 and 1000 Withdrawal</h2>
+                }
+                else if (Model.DispensationType == Dispensation.OneHundred_FiveHundred.ToString())
+                {
+                    <h2 class="text-muted">100 and 500 Withdrawal</h2>
+                }
+
+                @if (Model.Response != null && !string.IsNullOrEmpty(Model.Response.Message))
+                {
+                    @if (!Model.Response.Error)
+                    {
+                        <div class="alert alert-success alert-dismissible fade show" role="alert">
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                            @Html.ValidationSummary(false, "", new { @class = "mb-0" })
+                            <pre>@Model.Response.Message</pre>
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                            @Html.ValidationSummary(false, "", new { @class = "mb-0 text-wrap" })
+                            <p class="text-break">@Model.Response.Message</p>
+                        </div>
+                    }
+                }
+            </div>
+
+            <form asp-action="Index" method="post">
+                <div class="mb-3">
+                    <label asp-for="Amount" class="form-label">Amount</label>
+                    <div class="input-group">
+                        <span class="input-group-text">$</span>
+                        <input class="form-control" id="Amount" asp-for="Amount" placeholder="Enter the amount to withdraw. Example: 500">
+                        <input hidden asp-for="DispensationType">
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-primary w-100 mt-2">Withdraw</button>
+            </form>
+        </div>
+    </div>
+</main>
