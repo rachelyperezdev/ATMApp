@@ -37,5 +37,17 @@ This project is an ASP.NET Core MVC application designed to simulate an ATM's ca
 
 ### Prerequisites
 
-* [.Net Core SDK](https://dotnet.microsoft.com/en-us/download)
+* [.Net Core 8 SDK](https://dotnet.microsoft.com/download/dotnet/8.0)
 * [Visual Studio](https://visualstudio.microsoft.com/) or any preferred IDE for ASP.NET Core development
+
+### Installation
+
+1. Clone the repository
+```
+git clone https://github.com/rachelyperezdev/ATMApp.git
+cd ATMApp
+```
+2. Run the application
+```
+dotnet run
+```
